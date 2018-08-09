@@ -3,40 +3,29 @@ extends Node
 
 var player
 
-# Spell Elements
-# var elems = {
-#     dark,
-#     earth,
-#     elec,
-#     fire,
-#     light,
-#     neutral,
-#     water,
-#     wind,
-#     wood
-# }
-var spelldict = []
+var spells = []
 
 func _ready():
-    var spreads = 5
-    var pages = spreads * 2
-    var spellbook = []
-    for x in pages: # Each spread
-        spellbook.append([])
+    _load_spells()
+    # var spreads = 5
+    # var pages = spreads * 2
+    # var spellbook = []
+    # for x in pages: # Each spread
+    #     spellbook.append([])
 
-        Game.savedcurpos.append(Vector2(0,0)) # curpos for everypage
+    #     Game.savedcurpos.append(Vector2(0,0)) # curpos for everypage
 
-        for y in 20: # Each page postion
-            spellbook[x].append({"sid":null, "name":null})
+    #     for y in 20: # Each page postion
+    #         spellbook[x].append({"sid":null, "name":null})
 
-    Game.spellbook = spellbook
+    # Game.spellbook = spellbook
 
-    # Hard coded!
-    spellbook[0][0]  = {"sid":0, "name":"Fire"}
-    spellbook[0][3]  = {"sid":1, "name":"Fire II"}
-    spellbook[0][6] = {"sid":2, "name":"Fira"}
-    spellbook[1][2] = {"sid":3, "name":"Shade"}
-    spellbook[1][8] = {"sid":4, "name":"Shadow"}
+    # # Hard coded!
+    # spellbook[0][0]  = {"sid":0, "name":"Fire"}
+    # spellbook[0][3]  = {"sid":1, "name":"Fire II"}
+    # spellbook[0][6]  = {"sid":2, "name":"Fira"}
+    # spellbook[1][2]  = {"sid":3, "name":"Shade"}
+    # spellbook[1][8]  = {"sid":4, "name":"Shadow"}
 
     Game.loaded = true
 
@@ -80,11 +69,24 @@ func get_files(path):
     dir.list_dir_end()
     return files
 
-func load_spells():
+func _load_spells():
     # Get all of the spell instance files
-    var files = self.get_files("res://Engine/Spells/Data/")
+    var dir = "res://Engine/Spells/Data/"
+    var files = self.get_files(dir)
+
     # Save into dict
     # Count total number
+    var i = 0
+    for file in files:
+        spells.append(load(str(dir, file)).new()) # load the file, instance it, put in the list
+        i += 1
     # Create key length based on number
     # Assign keys
     # Generate key combo mapping
+
+    # get_tree().quit() # For testing
+
+# Recieves Signal "save" from GUI/MainMenu, connected in GUI
+func _on_save():
+    print("App._on_save() enter")
+    print("App._on_save() exit")
