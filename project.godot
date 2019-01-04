@@ -6,19 +6,19 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=3
 
 [application]
 
 config/name="Acenscion RPG"
-run/main_scene="res://ui/TestMenu.tscn"
+run/main_scene="res://main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="res://user/"
 config/icon="res://icon.png"
 
 [autoload]
 
-Game="*res://Engine/GameVars.gd"
+Game="*res://Engine/GameData.gd"
 App="*res://Engine/App.gd"
 
 [display]

@@ -11,6 +11,8 @@ onready var entries = [
     get_node("VBoxContainer/Exit")
 ]
 
+onready var cursor = get_node("../Cursor")
+
 var signals = ["spells", "map", "options", "save", "exit"]
 
 var index = 0
@@ -48,7 +50,6 @@ func _input(event):
 
     if (event.is_action_pressed("ui_down")):
         _set_to_next_visible_index(index+1)
-        # print(index)
         update_hover()
 
     if(event.is_action_pressed("ui_left")):
@@ -66,9 +67,4 @@ func _input(event):
         emit_signal("exit")
 
 func update_hover():
-    print("set ", index)
-    # for p in range(entries.size()):
-    #     if(p==index):
-    #         entries[p].add_style_override("panel", style_selected)
-    #     else:
-    #         entries[p].add_style_override("panel", style_empty)
+    cursor.position = entries[index].get_position()

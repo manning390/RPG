@@ -9,14 +9,17 @@ var isLoading = true
 var prevInputType
 
 func _ready():
+    print("studioSplash._ready() enter")
     # Get time for initial seed
     if setTimeSeed:
         seedString = str(OS.get_unix_time()).pad_zeros(seedLength)
 
     # Run animation
     fade_in_out()
+    print("studioSplash._ready() exit")
 
 func _input(event):
+    print("studioSplash._input() enter")
     # If any button/mouse/joy input is recieved put it at the end of the seed
     if event is InputEventMouseButton:
         seedString = str(seedString, int(event.position.length()))
@@ -32,6 +35,7 @@ func _input(event):
     # To avoid memory overflow, lets limit the length after each input
     if seedString.length() > seedLength:
         seedString.erase(0, seedString.length() - seedLength)
+    print(seedString)
 
 func fade_in_out():
     print("fade in out")
@@ -63,9 +67,9 @@ func next_scene():
             seedString.erase(0, seedString.length() - seedLength) # take the last seedLength chars
         else:
             seedString.pad_zeros(seedLength)
-        GVars.SEEDHASH = seedString.hash()
-        seed(GVars.SEEDHASH)
-        print(GVars.SEEDHASH)
+        Game.SEED = seedString.hash()
+        seed(Game.SEED)
+        print(Game.SEED)
 
         # Load next scene
         get_parent().add_child(nextScene.instance())

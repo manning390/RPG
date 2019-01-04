@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ui/menuTheme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/Spread.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/menuTheme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/Spread.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Cursor.tscn" type="PackedScene" id=3]
+
+
 
 [sub_resource type="StreamTexture" id=1]
 
 flags = 0
 load_path = "res://.import/parchment.jpg-61d7a4ebbcc0536e66c25e468734eda3.stex"
 
-[node name="TestMenu" type="Control"]
+[node name="TestMenu" type="Control" index="0"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0

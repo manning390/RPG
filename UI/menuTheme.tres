@@ -1,6 +1,8 @@
 [gd_resource type="Theme" load_steps=3 format=2]
 
-[ext_resource path="res://ui/Fonts/fool.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Fonts/fool.ttf" type="DynamicFontData" id=1]
+
+
 
 
 

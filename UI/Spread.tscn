@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Spread.gd" type="Script" id=1]
-[ext_resource path="res://ui/Cursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Cursor.tscn" type="PackedScene" id=2]
 
 
 
@@ -85,4 +85,5 @@ alignment = 0
 _sections_unfolded = [ "Size Flags", "Visibility" ]
 
 [node name="Cursor" parent="." index="1" instance=ExtResource( 2 )]
+frame = 1
 

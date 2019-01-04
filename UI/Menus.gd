@@ -3,6 +3,7 @@ extends CanvasLayer
 onready var menu = get_node("MainMenu")
 onready var spells = get_node("Spells")
 onready var map = get_node("Map")
+onready var cursor = get_node("Cursor")
 # onready var options = get_node("Options")
 
 func _ready():
@@ -16,7 +17,9 @@ func _ready():
 # Call to open menu
 func show_menu():
 	_open(menu)
+	cursor.show()
 	yield(menu, "exit")
+	cursor.hide()
 	_close(menu)
 
 func is_visible():

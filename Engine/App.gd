@@ -7,25 +7,26 @@ var spells = []
 
 func _ready():
     _load_spells()
-    # var spreads = 5
-    # var pages = spreads * 2
-    # var spellbook = []
-    # for x in pages: # Each spread
-    #     spellbook.append([])
+    var spreads = 5
+    var pages = spreads * 2
+    var spellbook = []
+    for x in pages: # Each spread
+        spellbook.append([])
 
-    #     Game.savedcurpos.append(Vector2(0,0)) # curpos for everypage
+        Game.savedcurpos.append(Vector2(0,0)) # curpos for everypage
 
-    #     for y in 20: # Each page postion
-    #         spellbook[x].append({"sid":null, "name":null})
+        for y in 20: # Each page postion
+            spellbook[x].append({"sid":null, "name":null})
 
-    # Game.spellbook = spellbook
 
-    # # Hard coded!
-    # spellbook[0][0]  = {"sid":0, "name":"Fire"}
-    # spellbook[0][3]  = {"sid":1, "name":"Fire II"}
-    # spellbook[0][6]  = {"sid":2, "name":"Fira"}
-    # spellbook[1][2]  = {"sid":3, "name":"Shade"}
-    # spellbook[1][8]  = {"sid":4, "name":"Shadow"}
+    # Hard coded!
+    spellbook[0][0]  = {"sid":0, "name":"Fire"}
+    spellbook[0][3]  = {"sid":1, "name":"Fire II"}
+    spellbook[0][6]  = {"sid":2, "name":"Fira"}
+    spellbook[1][2]  = {"sid":3, "name":"Shade"}
+    spellbook[1][8]  = {"sid":4, "name":"Shadow"}
+
+    Game.spellbook = spellbook
 
     Game.loaded = true
 
@@ -53,6 +54,9 @@ func csv_import(csv_file, dict_to_append, DICT_HEADERS_LIST):
             dict_to_append[line[0]] = temp_dict
             temp_dict = {}
 
+# Returns list of file names from dir
+#
+# param path               path to dir
 func get_files(path):
     var files = []
     var dir = Directory.new()
@@ -84,9 +88,20 @@ func _load_spells():
     # Assign keys
     # Generate key combo mapping
 
-    # get_tree().quit() # For testing
+    get_tree().quit() # For testing
+
+# Runs on startup(?)
+func _load_save():
+    print("App._load_save() enter")
+    print("lol idk")
+    # https://gist.github.com/brunosxs/27d5aefadcb9c9ce2ec5a12a31995168
+    print("App._load_save() exit")
 
 # Recieves Signal "save" from GUI/MainMenu, connected in GUI
 func _on_save():
     print("App._on_save() enter")
+    var F = File.new()
+    F.open(str("user://save/", Game.SEED, "_", OS.get_unix_time(),".save"), File.READ_WRITE)
+    F.store_var(Game)
+    F.close()
     print("App._on_save() exit")
